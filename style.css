@@ -113,10 +113,19 @@ input {
         background-color: var(--light-grayish-cyan);
         color: var(--very-dark-cyan);
         text-align: right;
+        
+
         &:focus-visible {
-            border: 2px solid var(--strong-cyan) !important;
+            border: 2px solid var(--strong-cyan) !important;            
         }
     }
+
+    .add-percent-icon {
+        background-image: url(./images/percent.svg);
+        background-position: 16px;
+        background-repeat: no-repeat;
+    }
+
     button:hover {
         background-color: var(--grayish-cyan);
         color: var(--very-dark-cyan);

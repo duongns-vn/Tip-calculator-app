@@ -30,12 +30,14 @@ function setupTipButtons() {
             button.addEventListener('click', () => {
                 calculateAndDisplayTip(buttonPercent[id]);
                 customPercent.value = buttonPercent[id];
+                customPercent.classList.add('add-percent-icon');
             });
         }
     });
 
     // Add input event to customPercent input field to handle custom tip percentages
     customPercent.addEventListener('input', () => {
+        customPercent.classList.add('add-percent-icon');
         const custom = parseFloat(customPercent.value);
         if (custom > 0) calculateAndDisplayTip(custom);
     });
