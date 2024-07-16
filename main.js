@@ -39,7 +39,11 @@ function setupTipButtons() {
     customPercent.addEventListener('input', () => {
         customPercent.classList.add('add-percent-icon');
         const custom = parseFloat(customPercent.value);
-        if (custom > 0) calculateAndDisplayTip(custom);
+        if (custom > 0) {
+            calculateAndDisplayTip(custom);
+        } else {
+            customPercent.classList.remove('add-percent-icon')
+        }
     });
 }
 
@@ -112,6 +116,7 @@ reset.addEventListener('click', () => {
     amount.textContent = `$0.00`;
     document.querySelector('.error').style.display = 'none';
     inputPeople.classList.remove('invalid');
+    customPercent.classList.remove('add-percent-icon');
 });
 
 // Initialize functions when the document is loaded
