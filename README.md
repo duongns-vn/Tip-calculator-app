@@ -1,5 +1,8 @@
 # Tip Calculator
 
+### Preview: 
+https://duongns-vn.github.io/Tip-calculator-app/
+
 ### Contributing
 Feel free to fork this project and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
 
