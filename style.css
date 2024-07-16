@@ -187,6 +187,7 @@ input {
     .money {
         font-size: 46px;
         color: var(--strong-cyan);
+        font-weight: 700;
     }
 }
 
