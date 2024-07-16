@@ -27,7 +27,10 @@ function setupTipButtons() {
     Object.keys(buttonPercent).forEach(id => {
         const button = domId(id);
         if (button) {
-            button.addEventListener('click', () => calculateAndDisplayTip(buttonPercent[id]));
+            button.addEventListener('click', () => {
+                calculateAndDisplayTip(buttonPercent[id]);
+                customPercent.value = buttonPercent[id];
+            });
         }
     });
 
