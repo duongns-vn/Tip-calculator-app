@@ -28,9 +28,9 @@ function setupTipButtons() {
         const button = domId(id);
         if (button) {
             button.addEventListener('click', () => {
+                buttons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
                 calculateAndDisplayTip(buttonPercent[id]);
-                customPercent.value = buttonPercent[id];
-                customPercent.classList.add('add-percent-icon');
             });
         }
     });
@@ -40,9 +40,11 @@ function setupTipButtons() {
         customPercent.classList.add('add-percent-icon');
         const custom = parseFloat(customPercent.value);
         if (custom > 0) {
+            buttons.forEach(btn => btn.classList.remove('active'));
             calculateAndDisplayTip(custom);
         } else {
-            customPercent.classList.remove('add-percent-icon')
+            calculateAndDisplayTip(0); // Handle case when custom percent is cleared
+            customPercent.classList.remove('add-percent-icon');
         }
     });
 }
@@ -54,7 +56,7 @@ function calculateTip(bill, people, percent) {
 
 // Function to calculate total amount per person including tip
 function calculateTotalTip(bill, people, percent) {
-    return (bill / people) + calculateTip(bill, people, percent);
+    return (bill / people) + (percent > 0 ? calculateTip(bill, people, percent) : 0);
 }
 
 // Function to calculate and display tip and total amounts
@@ -63,8 +65,8 @@ function calculateAndDisplayTip(percent) {
     const people = parseFloat(inputPeople.value);
 
     // Check if bill and people inputs are valid numbers
-    if (!isNaN(bill) && !isNaN(people)) {
-        const tip = calculateTip(bill, people, percent);
+    if (!isNaN(bill) && !isNaN(people) && people > 0) {
+        const tip = percent > 0 ? calculateTip(bill, people, percent) : 0;
         const totalAndTip = calculateTotalTip(bill, people, percent);
         amount.textContent = `$${tip.toFixed(2)}`;
         total.textContent = `$${totalAndTip.toFixed(2)}`;
@@ -73,6 +75,9 @@ function calculateAndDisplayTip(percent) {
         inputPeople.classList.remove('invalid');
     } else {
         console.log('You should select tip percent or input it');
+        // Clear the displayed amounts if input is invalid
+        amount.textContent = `$0.00`;
+        total.textContent = `$0.00`;
     }
 
     // Show error message if people input is invalid
@@ -88,7 +93,8 @@ function inputEvent() {
     [inputBill, inputPeople].forEach(inputElement => {
         if (inputElement) {
             inputElement.addEventListener('input', () => {
-                const percent = parseFloat(document.querySelector('button.active')?.dataset.percent || 0);
+                const activeButton = document.querySelector('button.active');
+                const percent = parseFloat(activeButton?.dataset.percent || customPercent.value || 0);
                 calculateAndDisplayTip(percent);
             });
         }
