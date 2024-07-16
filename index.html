@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip calculator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="main" role="main" class="flex-column">
+        <img src="./images/logo.svg" alt="logo" class="logo">
+
+        <div id="calculator" class="flex-row">
+            <div id="calculating" class="flex-column">
+                <div class="input_bill flex-column">
+                    <p>Bill</p> 
+                    <input type="text" onkeypress="return /[0-9]/i.test(event.key)" placeholder="0" id="type_bill">
+                </div>
+
+                <div class="select_tip flex-column">
+                    <p>Select Tip %</p>
+
+                    <div class="tip_percent flex-row">
+                        <button id="five">5%</button>
+                        <button id="ten">10%</button>
+                        <button id="fifteen">15%</button>
+                        <button id="twenty-five">25%</button>
+                        <button id="fifty">50%</button>
+                        <input type="text" onkeypress="return /[0-9]/i.test(event.key)" placeholder="Custom" id="input_percent">
+                    </div>
+                    <p class="error-percent">You should select tip percent or input it</p>
+                </div>
+
+                <div class="number_people flex-column">
+                    <div class="text_message flex-row">
+                        <p>Number of People</p>
+                        <p class="error">Can't be zero</p>
+                    </div>
+                    <input type="text" onkeypress="return /[0-9]/i.test(event.key)" placeholder="0" id="type_people">
+                </div>
+
+            </div>
+
+            <div id="calculated" class="flex-column">
+                <div class="amount flex-row">
+                    <div class="text_wrapper">
+                        <p>Tip Amount</p>
+                        <p>/ person</p>
+                    </div>
+                    <div id="amount_calculated" class="money">
+                        $0.00
+                    </div>
+                </div>
+
+                <div class="total flex-row">
+                    <div class="text_wrapper">
+                        <p>Total</p>
+                        <p>/ person</p>
+                    </div>
+                    <div id="total_calculated" class="money">
+                        $0.00
+                    </div>
+                </div>
+
+                <button type="reset" id="reset_button">RESET</button>
+
+            </div>
+        </div>
+
+        <!-- Author Info -->
+        <div class="attribution">
+            Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+            Coded by <a href="https://github.com/duongns-vn">DuongNs</a>.
+        </div>
+
+    </div>
+
+
+
+    <script defer src="./main.js"></script>
+</body>
+</html>
